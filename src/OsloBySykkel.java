@@ -1,10 +1,27 @@
 import java.net.*;
+import java.awt.Dimension;
 import java.io.*;
 import org.json.*;
 import java.util.*;
+import javax.swing.*;   
 
 public class OsloBySykkel {
 
+	private static void createAndShowGUI() {
+		JFrame frame = new JFrame("Oslo Bysykkel");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setPreferredSize(new Dimension(400, 300));
+		
+		
+		JLabel label = new JLabel("Hello World");
+		frame.getContentPane().add(label);
+		
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
 	private static JSONArray requestData(String resource) throws Exception {
 		URL url = new URL(resource);
 		URLConnection connect = url.openConnection();;
@@ -26,7 +43,11 @@ public class OsloBySykkel {
 		
 		System.out.println(stations.getJSONObject(0));
 		System.out.println(availability.getJSONObject(0));
-		
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
 	}
 
 }
