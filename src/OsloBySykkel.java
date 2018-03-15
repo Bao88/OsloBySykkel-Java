@@ -10,13 +10,14 @@ public class OsloBySykkel {
 		URL availabity = new URL("https://oslobysykkel.no/api/v1/stations/availability");
 		
 		URLConnection cStations = stations.openConnection();
+		cStations.setRequestProperty("Client-Identifier", "aa57ec526474715c30fdc77f2a7da0c0");
+		System.out.println(cStations.getHeaderFields());
 		BufferedReader in = new BufferedReader(new InputStreamReader(cStations.getInputStream()));
 		String inputLine;
 		while((inputLine = in.readLine()) != null) {
 			System.out.println(inputLine);
 		}
 		in.close();
-		
 	}
 
 }
